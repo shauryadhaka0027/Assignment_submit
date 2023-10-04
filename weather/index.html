@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <style>
+#nav{
+    height: 90px;
+    display: flex;
+    justify-content: space-around;
+    border: 2px solid grey;
+    border-radius: 15px;
+    background-color: rgb(120, 120, 202);
+}
+input[type="text"]{
+    width: 500px;
+    height: 35px;
+    border-radius: 15px;
+    border: 1px solid grey;
+    margin-top: 17px;
+    
+ 
+}
+#center{
+    display: flex;
+
+   
+    justify-content: space-around;
+}
+
+div button{
+    margin-left: -80px;
+    height: 41px;
+    width: 80px;
+    /* border-radius: 15px; */
+    
+    color: white;
+    background-color: black;
+}
+img{
+    height: 90px;
+    width: 300px;
+}
+#right img{
+    margin-right:-43px;
+}
+iframe{
+    height: 400px;
+    width: 600px;
+}
+
+    </style>
+</head>
+<body>
+    <div id="nav">
+        <div>
+          <img src="https://images.squarespace-cdn.com/content/v1/5ce1aaccb5c47a00015b19e5/1559415096285-14BCK71XDWQZMHZ0JQTB/Weather+Title+Page.png" alt="">
+        </div>
+        <div>
+            <input type="text" name="name" id="weather"  placeholder="Search Any City">
+            <button onclick="fetchWeather()">Search</button>
+        </div>
+        <div id="right"> 
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2w7ULRMJuGMyKdC-2UdzNzg2AJVf0YS2nNYx-ELaE05sTCOtiqlz4J4eShda5VR9AiHw&usqp=CAU" alt="">
+        </div>
+    </div>
+    <div id="center">
+        
+            <div id="weatherDetails">
+                <img id="weatherIcon" src="" alt="Weather Icon">
+                <p>Min Temp: <span id="minTemp"></span></p>
+                <p>Max Temp: <span id="maxTemp"></span></p>
+                <p>Wind: <span id="wind"></span></p>
+                <p>Clouds: <span id="clouds"></span></p>
+                <p>Sunrise: <span id="sunrise"></span></p>
+                <p>Sunset: <span id="sunset"></span></p>
+            </div>
+        
+            <div class="climate">
+                <iframe id="googleMap" src="" frameborder="0"></iframe>
+            </div>
+    </div>
+   
+</body>
+</html>
+<script src="./index.js"></script>

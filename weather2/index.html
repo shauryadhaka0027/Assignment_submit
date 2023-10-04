@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <style>
+#nav{
+    height: 90px;
+    display: flex;
+    justify-content: space-around;
+    border: 2px solid grey;
+    border-radius: 15px;
+    background-color: rgb(120, 120, 202);
+}
+input[type="text"]{
+    width: 500px;
+    height: 35px;
+    border-radius: 15px;
+    border: 1px solid grey;
+    margin-top: 17px;
+    
+ 
+}
+#center{
+    display: flex;
+
+   
+    justify-content: space-around;
+}
+
+div button{
+    margin-left: -80px;
+    height: 41px;
+    width: 80px;
+    /* border-radius: 15px; */
+    
+    color: white;
+    background-color: black;
+}
+img{
+    height: 90px;
+    width: 300px;
+}
+#right img{
+    margin-right:-43px;
+}
+.forecast-days{
+    display: flex;
+   
+}
+.forecast-days div{
+    border: 1px solid black;
+}
+.forecast-container h2{
+    text-align: center;
+}
+
+    </style>
+</head>
+<body>
+    <div id="nav">
+        <div>
+          <img src="https://images.squarespace-cdn.com/content/v1/5ce1aaccb5c47a00015b19e5/1559415096285-14BCK71XDWQZMHZ0JQTB/Weather+Title+Page.png" alt="">
+        </div>
+        <div>
+            <input type="text" name="name" id="weather"  placeholder="Search Any City">
+            <button onclick="fetchWeather()">Search</button>
+        </div>
+        <div id="right"> 
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2w7ULRMJuGMyKdC-2UdzNzg2AJVf0YS2nNYx-ELaE05sTCOtiqlz4J4eShda5VR9AiHw&usqp=CAU" alt="">
+        </div>
+    </div>
+
+   <div class="forecast-container">
+    <h2>5 Day Forecast</h2>
+    <div class="forecast-days" id="forecastDays">
+
+    </div>
+</div>
+<script src="./index.js"></script>
+</body>
+</html>
