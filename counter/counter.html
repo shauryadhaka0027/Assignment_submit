@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Counter</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+h1 {
+    font-size: 4em;
+    margin-bottom: 20px;
+}
+
+button {
+    font-size: 1.2em;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+button#toggle {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+}
+
+button#increment {
+    background-color: #008CBA;
+    color: white;
+    border: none;
+}
+
+button#decrement {
+    background-color: #f44336;
+    color: white;
+    border: none;
+}
+#header{
+    margin-left: 450px;
+   width: 35%;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+}  
+h1{
+    text-align: center;
+}
+
+    </style>
+</head>
+<body>
+    <h1>COUNTER</h1>
+    <div id="header">
+        <h1 id="count">0</h1>
+        <button id="toggle">Start</button>
+        <button id="increment">Increment</button>
+        <button id="decrement">Decrement</button>
+
+    </div>
+  
+</body>
+<script
+src="./counter.js"></script>
+</html>
