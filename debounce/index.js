@@ -5,7 +5,7 @@ async function fetchApi(url){
    let res=await fetch(url)
    let data=await res.json()
     let movie=data.Search
-    return movie
+    display(movie)
 
     }
     catch (error){
@@ -17,28 +17,13 @@ async function fetchApi(url){
   
 
 
-function debounce(func, delay) {
-    let timer;
-    return function deb(query) {
-        clearTimeout(timer);
-        timer = setTimeout(() => {
-            func(query);
-        }, delay);
-    };
-}
+let timer= null;
+  SearchBox.addEventListener("input", function(){
+   clearTimeout(timer)
+   timer=setTimeout(()=>{
 
-let debounceSearch= debounce(display,500)
-
-  SearchBox.addEventListener("input", async function(e){
-    let inputValue=e.target.value
-    try{
-       let data= await fetchApi(`http://www.omdbapi.com/?apikey=1f793426&s=${inputValue}`)
-       debounceSearch(data)
-
-    }
-    catch (error){
-        console.log("error",error)
-    }
+    fetchApi(`http://www.omdbapi.com/?apikey=1f793426&s=${SearchBox.value}`)
+   },500)
   }) 
 
   function display(data) {

@@ -6,36 +6,48 @@ async function fetchApi(url) {
         let res = await fetch(url);
         let data = await res.json();
         let movie = data.Search;
-        return movie;
+        display(movie);
     } catch (error) {
         console.log("this is error", error);
     }
 }
 
-function throttle(func, delay) {
-    let throttling = false;
-    function inner(query) {
-        if (throttling == false) {
-            throttling = true;
-            func(query);
-            setTimeout(() => {
-                throttling = false;
-            }, delay);
-        }
-    }
-    return inner;
-}
+// function throttle(func, delay) {
+//     let throttling = false;
+//     function inner(query) {
+//         if (throttling == false) {
+//             throttling = true;
+//             func(query);
+//             setTimeout(() => {
+//                 throttling = false;
+//             }, delay);
+//         }
+//     }
+//     return inner;
+// }
 
-let throttleSearch = throttle(display, 250);
+// let throttleSearch = throttle(display, 250);
 
-SearchBox.addEventListener("input", async function (e) {
-    let inputValue = e.target.value;
-    try {
-        let data = await fetchApi(`http://www.omdbapi.com/?apikey=1f793426&s=${inputValue}`);
-        throttleSearch(data);
-    } catch (error) {
-        console.log("error", error);
+SearchBox.addEventListener("input", function () {
+    let throttling=false;
+    if(throttling==false){
+        throttling = true;
+       
+         setTimeout(() => {
+        fetchApi(`http://www.omdbapi.com/?apikey=1f793426&s=${SearchBox.value}`)
+        throttling = false;
+        },200 );
+
+    
+
     }
+    // let inputValue = e.target.value;
+    // try {
+    //     let data = await fetchApi(`http://www.omdbapi.com/?apikey=1f793426&s=${inputValue}`);
+    //     throttleSearch(data);
+    // } catch (error) {
+    //     console.log("error", error);
+    // }
 });
 
 function display(data) {
