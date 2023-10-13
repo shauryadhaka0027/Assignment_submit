@@ -5,72 +5,57 @@ async function fetchApi(url) {
     try {
         let res = await fetch(url);
         let data = await res.json();
-        let movie = data.Search;
+        let movie = data.meals;
         display(movie);
+        console.log(movie)
     } catch (error) {
         console.log("this is error", error);
     }
 }
-
-// function throttle(func, delay) {
-//     let throttling = false;
-//     function inner(query) {
-//         if (throttling == false) {
-//             throttling = true;
-//             func(query);
-//             setTimeout(() => {
-//                 throttling = false;
-//             }, delay);
-//         }
-//     }
-//     return inner;
-// }
-
-// let throttleSearch = throttle(display, 250);
-
 SearchBox.addEventListener("input", function () {
-    let throttling=false;
-    if(throttling==false){
+    let throttling = false;
+    if (throttling == false) {
         throttling = true;
-       
-         setTimeout(() => {
-        fetchApi(`http://www.omdbapi.com/?apikey=1f793426&s=${SearchBox.value}`)
-        throttling = false;
-        },200 );
 
-    
-
+        setTimeout(() => {
+            const inputValue = SearchBox.value;
+            if (inputValue === "") {
+                root.innerHTML = ""; 
+            } else {
+                fetchApi(`https://www.themealdb.com/api/json/v1/1/search.php?s=${inputValue}`)
+                    .then(() => {
+                        throttling = false;
+                    })
+                    .catch(error => {
+                        console.log("Error fetching data:", error);
+                        throttling = false;
+                    });
+            }
+        }, 2000);
     }
-    // let inputValue = e.target.value;
-    // try {
-    //     let data = await fetchApi(`http://www.omdbapi.com/?apikey=1f793426&s=${inputValue}`);
-    //     throttleSearch(data);
-    // } catch (error) {
-    //     console.log("error", error);
-    // }
 });
 
-function display(data) {
-    console.log(data); // Log data for debugging
-    root.innerHTML = '';
 
-    if (data && Array.isArray(data)) {
+function display(data) {
+    console.log(data); 
+    root.innerHTML = "";
+
+
         data.forEach(function (ele) {
             let div1 = document.createElement("div");
             div1.className = "product-card";
             let img = document.createElement("img");
-            img.src = ele.Poster;
+            img.src = ele.strMealThumb;
             let title1 = document.createElement("p");
-            title1.textContent = `Movie Title : ${ele.Title}`;
+            title1.textContent = `Meal Id : ${ele.idMeal}`;
             let year = document.createElement("p");
-            year.textContent = `Movie Year : ${ele.Year}`;
-            let imb = document.createElement("p");
-            imb.textContent = `movie.imdbID : ${ele.imdbID}`;
-            div1.append(img, title1, year, imb);
+            year.textContent = `Meal Tags : ${ele.strTags }`;
+           
+            div1.append(img, title1, year);
 
             root.appendChild(div1);
         });
-    }
+    
 }
 
 
